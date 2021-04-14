@@ -102,6 +102,7 @@ console.log(evenFn(20)); // [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
  * 7 → 'Воскресенье'
  *
  * В реализации функции обязательно должны быть использованы операторы switch / case / default.
+ * 
  */
 
 function weekFn(n) {
@@ -146,6 +147,8 @@ console.log(weekFn(9)); // null
 console.log(weekFn(1.5)); // null
 
 console.log(weekFn('2')); // null
+
+
 
 /*
  * #6
@@ -230,8 +233,8 @@ console.log('130 :', ageClassification(130)); // 130 : null
 
 function oddFn(n) {
   let arr = [];
-  let i = 0;
 
+  let i = 0;
   while (i++ < n) if (i % 2 !== 0) arr.push(i);
 
   return arr;
@@ -254,9 +257,8 @@ console.log(oddFn(20)); // [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
  * Реализуйте проверку: если третьим параметром передается не функция, нужно вернуть false.
  *
  */
-function mainFunc(a, b, funk) {
-  if (funk && typeof funk === 'function') return funk(a, b);
-
+function mainFunc(a, b, cb) {
+  if (cb && typeof cb === 'function') return cb(a, b);
   return false;
 }
 
@@ -267,6 +269,7 @@ function mainFunc(a, b, funk) {
  */
 
 // cbRandom(a, b) – вычисляет и возвращает произвольное целое число в диапазоне между a и b включительно.
+//Math.floor( 45.95); //  45
 function cbRandom(a, b) {
   return Math.floor(Math.random() * (a - b + 1)) + b;
 }
