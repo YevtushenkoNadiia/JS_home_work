@@ -257,8 +257,8 @@ console.log(oddFn(20)); // [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
  * Реализуйте проверку: если третьим параметром передается не функция, нужно вернуть false.
  *
  */
-function mainFunc(a, b, cb) {
-  if (cb && typeof cb === 'function') return cb(a, b);
+function mainFunc(a, b, callback) {
+  if (callback && typeof callback === 'function') return callback(a, b);
   return false;
 }
 
