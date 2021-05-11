@@ -103,7 +103,13 @@
 // }());
 
 
-const carousel = new Carousel();
+const carousel = new SwipeCarousel( params: {
+  containerID: '.slider',
+  slideID: '.item',
+  interval: 1000,
+  isPlaying: false
+});
+
 carousel.init();
 
 //планы на эту работу
@@ -118,4 +124,67 @@ carousel.init();
 //9 переписать на продвинутые синтаксис - классы
 //10 наследование классов
 //11 продвинутая конфигурация класса
+
+
+
+
+var slides = document.querySelectorAll('.slide');
+var currentSlide = 0;
+var slideInterval = setInterval(nextSlide, 2000);
+
+function nextSlide() {
+    goToSlide(currentSlide+1);
+}
+
+function previousSlide() {
+    goToSlide(currentSlide-1);
+}
+
+function goToSlide(n) {
+    slides[currentSlide].className = 'slide';
+    currentSlide = (n+slides.length)%slides.length;
+    slides[currentSlide].className = 'slide active';
+}
+
+var playing = true;
+var pauseButton = document.querySelector('#pause');
+
+function pauseSlideShow() {
+    pauseButton.innerHTML = 'Play';
+    playing = false;
+    clearInterval(slideInterval);
+}
+
+function playSlideShow() {
+    pauseButton.innerHTML = 'Pause';
+    playing = true;
+    slideInterval = setInterval(nextSlide, 2000);
+}
+
+pauseButton.onclick = function() {
+    if (playing) {
+  	    pauseSlideShow();
+    } else {
+  	    playSlideShow();
+	  }
+};
+
+var next = document.querySelector('#next');
+var previous = document.querySelector('#previous');
+
+next.onclick = function() {
+    pauseSlideShow();
+    nextSlide();
+};
+
+previous.onclick = function() {
+    pauseSlideShow();
+    previousSlide();
+};
+
+var controls = document.querySelectorAll('.controls');
+
+for (var i = 0; i < controls.length; i++){
+    controls[i].style.display = 'inline-block';
+}
 
